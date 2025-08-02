@@ -1,3 +1,4 @@
+
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import "https://deno.land/x/xhr@0.1.0/mod.ts"
 
@@ -12,24 +13,34 @@ serve(async (req) => {
   }
 
   try {
+    console.log('Starting receipt analysis...')
+    
     const formData = await req.formData()
     const imageFile = formData.get('image') as File
     
     if (!imageFile) {
+      console.error('No image provided')
       return new Response(
         JSON.stringify({ error: 'No image provided' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
 
+    console.log('Image received:', imageFile.name, imageFile.size, 'bytes')
+
     // Convert image to base64
     const bytes = await imageFile.arrayBuffer()
     const base64 = btoa(String.fromCharCode(...new Uint8Array(bytes)))
     
+    console.log('Image converted to base64, length:', base64.length)
+    
     const openaiApiKey = Deno.env.get('OPENAI_API_KEY')
     if (!openaiApiKey) {
+      console.error('OpenAI API key not found in environment')
       throw new Error('OpenAI API key not configured')
     }
+
+    console.log('OpenAI API key found, making request...')
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -74,17 +85,25 @@ Be accurate with the prices and item names. If you can't clearly read something,
       })
     })
 
+    console.log('OpenAI response status:', response.status)
+
     const openaiResult = await response.json()
     
     if (!response.ok) {
+      console.error('OpenAI API error:', openaiResult)
       throw new Error(`OpenAI API error: ${openaiResult.error?.message || 'Unknown error'}`)
     }
+
+    console.log('OpenAI response received successfully')
 
     // Extract JSON from the response
     const content = openaiResult.choices[0]?.message?.content
     if (!content) {
+      console.error('No content received from OpenAI')
       throw new Error('No content received from OpenAI')
     }
+
+    console.log('OpenAI content:', content)
 
     // Try to parse the JSON response
     let receiptData
@@ -93,18 +112,21 @@ Be accurate with the prices and item names. If you can't clearly read something,
       const jsonMatch = content.match(/\{[\s\S]*\}/)
       if (jsonMatch) {
         receiptData = JSON.parse(jsonMatch[0])
+        console.log('Successfully parsed receipt data:', receiptData)
       } else {
         throw new Error('No JSON found in response')
       }
     } catch (parseError) {
       console.error('JSON parse error:', parseError)
+      console.error('Content that failed to parse:', content)
       // Fallback response
       receiptData = {
         items: [
           { name: "Unable to parse receipt", price: 0, quantity: 1 }
         ],
         total: 0,
-        tax: 0
+        tax: 0,
+        tip: 0
       }
     }
 
@@ -117,9 +139,12 @@ Be accurate with the prices and item names. If you can't clearly read something,
     )
 
   } catch (error) {
-    console.error('Error:', error)
+    console.error('Error in analyze-receipt function:', error)
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: 'Check the function logs for more information'
+      }),
       { 
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
