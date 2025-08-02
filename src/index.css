@@ -9,43 +9,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base colors - warm creamy whites and soft grays */
-    --background: 25 20% 98%;
+    /* Base colors - Soft Cream foundation */
+    --background: 45 100% 95%; /* Soft Cream */
     --foreground: 20 10% 20%;
 
-    /* Cards - slightly warmer whites with gentle depth */
-    --card: 30 30% 96%;
+    /* Cards - slightly deeper cream with gentle depth */
+    --card: 45 80% 92%;
     --card-foreground: 20 10% 25%;
 
     /* Popovers */
-    --popover: 30 30% 96%;
+    --popover: 45 80% 92%;
     --popover-foreground: 20 10% 25%;
 
-    /* Primary - soft sage green (friendly but professional) */
-    --primary: 140 25% 45%;
-    --primary-foreground: 0 0% 98%;
-    --primary-soft: 140 35% 85%;
+    /* Primary - Moss Green (grounding and natural) */
+    --primary: 88 48% 67%; /* Moss Green */
+    --primary-foreground: 45 100% 95%;
+    --primary-soft: 88 48% 85%;
 
-    /* Secondary - warm peach/cream accent */
-    --secondary: 25 45% 90%;
-    --secondary-foreground: 20 15% 35%;
+    /* Secondary - Coral Blush (cheerful and friendly) */
+    --secondary: 12 100% 67%; /* Coral Blush */
+    --secondary-foreground: 45 100% 95%;
 
-    /* Muted - gentle warm grays */
-    --muted: 25 15% 92%;
+    /* Muted - gentle warm tones */
+    --muted: 45 60% 88%;
     --muted-foreground: 20 8% 55%;
 
-    /* Accent - soft warm yellow for highlights */
-    --accent: 45 55% 88%;
-    --accent-foreground: 20 15% 35%;
+    /* Accent - Periwinkle (calm and whimsical) */
+    --accent: 224 74% 76%; /* Periwinkle */
+    --accent-foreground: 45 100% 95%;
 
-    /* Destructive - soft coral (less harsh than pure red) */
-    --destructive: 5 65% 65%;
-    --destructive-foreground: 0 0% 98%;
+    /* Destructive - softer coral tone */
+    --destructive: 12 85% 60%;
+    --destructive-foreground: 45 100% 95%;
 
     /* Borders and inputs - warm, subtle */
-    --border: 25 20% 88%;
-    --input: 25 25% 92%;
-    --ring: 140 25% 45%;
+    --border: 45 40% 85%;
+    --input: 45 60% 90%;
+    --ring: 88 48% 67%;
 
     /* Custom design tokens */
     --radius: 0.75rem; /* More rounded for cozy feel */
