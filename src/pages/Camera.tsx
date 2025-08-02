@@ -225,7 +225,16 @@ const Camera = () => {
                   </div>
                 )}
               </div>
-              <Button className="w-full mt-4">
+              <Button 
+                className="w-full mt-4"
+                onClick={() => {
+                  toast({
+                    title: "Bill ready to split!",
+                    description: "Proceeding to split the bill among participants",
+                  });
+                  // TODO: Navigate to bill splitting page
+                }}
+              >
                 Continue to Split Bill
               </Button>
             </CardContent>
