@@ -56,7 +56,7 @@ serve(async (req) => {
             content: [
               {
                 type: 'text',
-                text: `Analyze this receipt image and extract the items, prices, and totals. Return a JSON object with this exact structure:
+                text: `Analyze this receipt image and extract ALL information including items, taxes, discounts, service charges, and final totals. Return a JSON object with this exact structure:
 {
   "items": [
     {
@@ -65,12 +65,26 @@ serve(async (req) => {
       "quantity": 1
     }
   ],
-  "total": 25.98,
+  "subtotal": 23.88,
   "tax": 2.10,
-  "tip": 0
+  "serviceCharge": 0,
+  "discount": 0,
+  "tip": 0,
+  "total": 25.98
 }
 
-Be accurate with the prices and item names. If you can't clearly read something, make your best guess but be conservative with prices.`
+IMPORTANT CALCULATION RULES:
+1. Extract the base price for each item (before any taxes/charges)
+2. Calculate subtotal as sum of all item prices
+3. Extract tax amount from receipt (often shown as "Tax", "GST", "VAT", etc.)
+4. Extract any service charges, delivery fees, or other charges
+5. Extract any discounts or promotions applied
+6. The final total should match what's shown on the receipt
+7. If tip is mentioned, include it, otherwise set to 0
+8. Be very careful with decimal places and currency formatting
+9. Make sure: subtotal + tax + serviceCharge - discount + tip = total
+
+Be extremely accurate with all numbers. Double-check your math. If you can't clearly read something, make your best conservative guess but prioritize accuracy over completeness.`
               },
               {
                 type: 'image_url',

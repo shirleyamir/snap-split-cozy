@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Camera as CameraIcon, Upload, FileImage, Zap, X } from "lucide-react";
@@ -13,8 +14,11 @@ interface ReceiptItem {
 
 interface AnalyzedReceipt {
   items: ReceiptItem[];
+  subtotal: number;
   total: number;
   tax?: number;
+  serviceCharge?: number;
+  discount?: number;
   tip?: number;
 }
 
@@ -23,6 +27,7 @@ const Camera = () => {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [analyzedReceipt, setAnalyzedReceipt] = useState<AnalyzedReceipt | null>(null);
   const { toast } = useToast();
+  const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
 
@@ -224,15 +229,25 @@ const Camera = () => {
                     <span>${analyzedReceipt.tax.toFixed(2)}</span>
                   </div>
                 )}
+                {analyzedReceipt.serviceCharge && (
+                  <div className="flex justify-between items-center text-sm text-muted-foreground">
+                    <span>Service Charge:</span>
+                    <span>${analyzedReceipt.serviceCharge.toFixed(2)}</span>
+                  </div>
+                )}
+                {analyzedReceipt.discount && (
+                  <div className="flex justify-between items-center text-sm text-muted-foreground">
+                    <span>Discount:</span>
+                    <span>-${analyzedReceipt.discount.toFixed(2)}</span>
+                  </div>
+                )}
               </div>
               <Button 
                 className="w-full mt-4"
                 onClick={() => {
-                  toast({
-                    title: "Bill ready to split!",
-                    description: "Proceeding to split the bill among participants",
+                  navigate("/camera/billbreakdown", {
+                    state: { receiptData: analyzedReceipt }
                   });
-                  // TODO: Navigate to bill splitting page
                 }}
               >
                 Continue to Split Bill
