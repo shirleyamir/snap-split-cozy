@@ -5,14 +5,51 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Settings, DollarSign, Palette, Info, Download } from "lucide-react";
 
 const Profile = () => {
-  const [currency, setCurrency] = useState("USD");
+  const [currency, setCurrency] = useState("IDR");
 
   const currencies = [
+    { value: "IDR", label: "Indonesian Rupiah (Rp)" },
     { value: "USD", label: "US Dollar ($)" },
     { value: "EUR", label: "Euro (€)" },
     { value: "GBP", label: "British Pound (£)" },
+    { value: "JPY", label: "Japanese Yen (¥)" },
     { value: "CAD", label: "Canadian Dollar (C$)" },
     { value: "AUD", label: "Australian Dollar (A$)" },
+    { value: "CHF", label: "Swiss Franc (Fr)" },
+    { value: "CNY", label: "Chinese Yuan (¥)" },
+    { value: "SGD", label: "Singapore Dollar (S$)" },
+    { value: "MYR", label: "Malaysian Ringgit (RM)" },
+    { value: "THB", label: "Thai Baht (฿)" },
+    { value: "KRW", label: "South Korean Won (₩)" },
+    { value: "INR", label: "Indian Rupee (₹)" },
+    { value: "HKD", label: "Hong Kong Dollar (HK$)" },
+    { value: "NZD", label: "New Zealand Dollar (NZ$)" },
+    { value: "SEK", label: "Swedish Krona (kr)" },
+    { value: "NOK", label: "Norwegian Krone (kr)" },
+    { value: "DKK", label: "Danish Krone (kr)" },
+    { value: "PLN", label: "Polish Złoty (zł)" },
+    { value: "CZK", label: "Czech Koruna (Kč)" },
+    { value: "HUF", label: "Hungarian Forint (Ft)" },
+    { value: "RON", label: "Romanian Leu (lei)" },
+    { value: "BGN", label: "Bulgarian Lev (лв)" },
+    { value: "HRK", label: "Croatian Kuna (kn)" },
+    { value: "RUB", label: "Russian Ruble (₽)" },
+    { value: "TRY", label: "Turkish Lira (₺)" },
+    { value: "BRL", label: "Brazilian Real (R$)" },
+    { value: "MXN", label: "Mexican Peso ($)" },
+    { value: "ARS", label: "Argentine Peso ($)" },
+    { value: "CLP", label: "Chilean Peso ($)" },
+    { value: "COP", label: "Colombian Peso ($)" },
+    { value: "PEN", label: "Peruvian Sol (S/)" },
+    { value: "ZAR", label: "South African Rand (R)" },
+    { value: "EGP", label: "Egyptian Pound (£)" },
+    { value: "ILS", label: "Israeli Shekel (₪)" },
+    { value: "AED", label: "UAE Dirham (د.إ)" },
+    { value: "SAR", label: "Saudi Riyal (﷼)" },
+    { value: "QAR", label: "Qatari Riyal (﷼)" },
+    { value: "KWD", label: "Kuwaiti Dinar (د.ك)" },
+    { value: "BHD", label: "Bahraini Dinar (.د.ب)" },
+    { value: "OMR", label: "Omani Rial (﷼)" },
   ];
 
   return (

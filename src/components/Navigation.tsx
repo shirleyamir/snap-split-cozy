@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Home, MapPin, Camera, Users, Settings } from "lucide-react";
+import { Home, MapPin, Camera, Users, User } from "lucide-react";
 
 const Navigation = () => {
   const navItems = [
@@ -7,7 +7,7 @@ const Navigation = () => {
     { to: "/trips", icon: MapPin, label: "Trips" },
     { to: "/camera", icon: Camera, label: "Camera" },
     { to: "/users", icon: Users, label: "Users" },
-    { to: "/profile", icon: Settings, label: "Profile" },
+    { to: "/profile", icon: User, label: "Profile" },
   ];
 
   return (
