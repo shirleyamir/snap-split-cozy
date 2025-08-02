@@ -94,28 +94,6 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Stats Overview */}
-        <Card className="shadow-card border-border/50">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg">This Month</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-semibold text-primary">16</div>
-                <div className="text-xs text-muted-foreground">Bills Split</div>
-              </div>
-              <div>
-                <div className="text-2xl font-semibold text-primary">$989</div>
-                <div className="text-xs text-muted-foreground">Total Spent</div>
-              </div>
-              <div>
-                <div className="text-2xl font-semibold text-primary">8</div>
-                <div className="text-xs text-muted-foreground">Friends</div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Add Bill Modal */}
