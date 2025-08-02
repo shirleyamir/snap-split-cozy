@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Camera as CameraIcon, Upload, FileImage, Zap, X } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ReceiptItem {
   name: string;
@@ -31,19 +32,15 @@ const Camera = () => {
       const formData = new FormData();
       formData.append('image', imageFile);
       
-      const response = await fetch('https://42a0fd03-483c-4e8b-a83f-0de2964a4fa9.supabase.co/functions/v1/analyze-receipt', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IjQyYTBmZDAzNDgzYzRlOGJhODNmMGRlMjk2NGE0ZmE5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIzNzI5ODMsImV4cCI6MjA0Nzk0ODk4M30.KJ8ZAqSUAJ6cJhYgKRJvJiNfJPu5FRQjX-4cEMJQ4nI'}`
-        }
+      const { data, error } = await supabase.functions.invoke('analyze-receipt', {
+        body: formData
       });
       
-      if (!response.ok) {
-        throw new Error('Failed to analyze receipt');
+      if (error) {
+        throw error;
       }
       
-      const result = await response.json();
+      const result = data;
       setAnalyzedReceipt(result);
       toast({
         title: "Receipt analyzed!",
