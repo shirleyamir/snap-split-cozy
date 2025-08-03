@@ -114,26 +114,26 @@ const AddBillModal = ({ open, onOpenChange }: AddBillModalProps) => {
                 {mockReceipt.items.map((item) => (
                   <div key={item.id} className="flex justify-between items-center p-3 bg-card rounded-lg border">
                     <span className="text-sm">{item.name}</span>
-                    <span className="font-medium">${item.price.toFixed(2)}</span>
+                    <span className="font-medium">Rp {item.price.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                 ))}
                 
                 <div className="border-t pt-3 space-y-1">
                   <div className="flex justify-between text-sm">
                     <span>Subtotal</span>
-                    <span>${mockReceipt.subtotal.toFixed(2)}</span>
+                    <span>Rp {mockReceipt.subtotal.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span>Tax</span>
-                    <span>${mockReceipt.tax.toFixed(2)}</span>
+                    <span>Rp {mockReceipt.tax.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span>Tip</span>
-                    <span>${mockReceipt.tip.toFixed(2)}</span>
+                    <span>Rp {mockReceipt.tip.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                   <div className="flex justify-between font-semibold border-t pt-1">
                     <span>Total</span>
-                    <span>${mockReceipt.total.toFixed(2)}</span>
+                    <span>Rp {mockReceipt.total.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                 </div>
               </div>
@@ -188,7 +188,7 @@ const AddBillModal = ({ open, onOpenChange }: AddBillModalProps) => {
                     <CardContent className="p-3">
                       <div className="flex justify-between items-center mb-2">
                         <span className="font-medium">{item.name}</span>
-                        <span className="text-primary font-semibold">${item.price.toFixed(2)}</span>
+                        <span className="text-primary font-semibold">Rp {item.price.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       </div>
                       <div className="flex flex-wrap gap-1">
                         {participants.map((person) => (

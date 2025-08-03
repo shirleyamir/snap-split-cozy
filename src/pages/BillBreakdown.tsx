@@ -93,35 +93,35 @@ const BillBreakdown = () => {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>${(receiptData.subtotal || receiptData.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <span>Rp {(receiptData.subtotal || receiptData.total).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
               </div>
               {receiptData.tax && (
                 <div className="flex justify-between text-muted-foreground">
                   <span>Tax</span>
-                  <span>${receiptData.tax.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span>Rp {receiptData.tax.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
               )}
               {receiptData.serviceCharge && (
                 <div className="flex justify-between text-muted-foreground">
                   <span>Service Charge</span>
-                  <span>${receiptData.serviceCharge.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span>Rp {receiptData.serviceCharge.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
               )}
               {receiptData.tip && (
                 <div className="flex justify-between text-muted-foreground">
                   <span>Tip</span>
-                  <span>${receiptData.tip.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span>Rp {receiptData.tip.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
               )}
               {receiptData.discount && (
                 <div className="flex justify-between text-muted-foreground">
                   <span>Discount</span>
-                  <span>-${receiptData.discount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span>-Rp {receiptData.discount.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
               )}
               <div className="flex justify-between font-semibold text-lg pt-2 border-t border-border/50">
                 <span>Total</span>
-                <span>${receiptData.total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <span>Rp {receiptData.total.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
               </div>
             </div>
           </CardContent>

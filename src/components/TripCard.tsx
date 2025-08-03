@@ -39,7 +39,7 @@ const TripCard = ({ trip }: TripCardProps) => {
           </div>
           <div className="text-right">
             <div className="text-lg font-semibold text-foreground">
-              ${trip.totalAmount.toFixed(2)}
+              Rp {trip.totalAmount.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
           </div>
         </div>

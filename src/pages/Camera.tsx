@@ -166,6 +166,24 @@ const Camera = () => {
           </div>
         </Card>
 
+        {/* Quick Tips */}
+        <Card className="shadow-card border-border/50">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-lg">Quick Tips</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="text-sm text-muted-foreground">
+              • Ensure receipt is well-lit and flat
+            </div>
+            <div className="text-sm text-muted-foreground">
+              • Include all items and totals in frame
+            </div>
+            <div className="text-sm text-muted-foreground">
+              • You can edit items after scanning
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Action Buttons */}
         <div className="space-y-4">
           <Button 
@@ -175,29 +193,22 @@ const Camera = () => {
             size="lg"
           >
             <CameraIcon className="h-6 w-6 mr-2" />
-            {isScanning ? "Analyzing..." : "Take Photo"}
+            {isScanning ? "Analyzing..." : "Take a Photo"}
           </Button>
 
-          <div className="grid grid-cols-2 gap-3">
-            <Button 
-              variant="outline" 
-              className="h-12"
-              onClick={handleUploadClick}
-              disabled={isScanning}
-            >
-              <Upload className="h-5 w-5 mr-2" />
-              Upload
-            </Button>
-            <Button 
-              variant="outline" 
-              className="h-12"
-              onClick={handleCameraClick}
-              disabled={isScanning}
-            >
-              <FileImage className="h-5 w-5 mr-2" />
-              Gallery
-            </Button>
+          <div className="text-center text-sm text-muted-foreground py-2">
+            or
           </div>
+
+          <Button 
+            variant="outline" 
+            className="w-full h-12"
+            onClick={handleUploadClick}
+            disabled={isScanning}
+          >
+            <Upload className="h-5 w-5 mr-2" />
+            Upload Image
+          </Button>
         </div>
 
         {/* Analysis Results */}
@@ -214,31 +225,31 @@ const Camera = () => {
                       <span className="font-medium">{item.name}</span>
                       {item.quantity && <span className="text-muted-foreground ml-2">x{item.quantity}</span>}
                     </div>
-                    <span className="font-medium">${item.price.toFixed(2)}</span>
+                    <span className="font-medium">Rp {item.price.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                 ))}
               </div>
               <div className="pt-2 border-t border-border/50">
                 <div className="flex justify-between items-center font-semibold text-lg">
                   <span>Total:</span>
-                  <span>${analyzedReceipt.total.toFixed(2)}</span>
+                  <span>Rp {analyzedReceipt.total.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
                 {analyzedReceipt.tax && (
                   <div className="flex justify-between items-center text-sm text-muted-foreground">
                     <span>Tax:</span>
-                    <span>${analyzedReceipt.tax.toFixed(2)}</span>
+                    <span>Rp {analyzedReceipt.tax.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                 )}
                 {analyzedReceipt.serviceCharge && (
                   <div className="flex justify-between items-center text-sm text-muted-foreground">
                     <span>Service Charge:</span>
-                    <span>${analyzedReceipt.serviceCharge.toFixed(2)}</span>
+                    <span>Rp {analyzedReceipt.serviceCharge.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                 )}
                 {analyzedReceipt.discount && (
                   <div className="flex justify-between items-center text-sm text-muted-foreground">
                     <span>Discount:</span>
-                    <span>-${analyzedReceipt.discount.toFixed(2)}</span>
+                    <span>-Rp {analyzedReceipt.discount.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                   </div>
                 )}
               </div>
@@ -258,25 +269,9 @@ const Camera = () => {
 
           </div>
 
-          {/* Right column - Tips and Results */}
+          {/* Right column - Analysis only */}
           <div className="space-y-6">
-            {/* Quick Tips */}
-            <Card className="shadow-card border-border/50">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Quick Tips</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="text-sm text-muted-foreground">
-                  • Ensure receipt is well-lit and flat
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  • Include all items and totals in frame
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  • You can edit items after scanning
-                </div>
-              </CardContent>
-            </Card>
+            {/* This column is for future analysis details */}
           </div>
         </div>
       </div>

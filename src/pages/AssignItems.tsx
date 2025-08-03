@@ -126,7 +126,7 @@ const AssignItems = () => {
                   <div className="flex-1">
                     <div className="font-medium">{item.name}</div>
                     <div className="text-sm text-muted-foreground">
-                      ${item.price.toFixed(2)}
+                      Rp {item.price.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       {item.quantity && item.quantity > 1 && ` × ${item.quantity}`}
                     </div>
                   </div>

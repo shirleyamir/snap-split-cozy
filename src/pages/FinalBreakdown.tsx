@@ -69,11 +69,11 @@ const FinalBreakdown = () => {
 
   const handleShare = () => {
     const breakdown = userBreakdowns.map(ub => 
-      `${ub.user.name}: $${ub.total.toFixed(2)}\n` +
-      ub.items.map(item => `  • ${item.name}: $${item.price.toFixed(2)}`).join('\n')
+      `${ub.user.name}: Rp ${ub.total.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n` +
+      ub.items.map(item => `  • ${item.name}: Rp ${item.price.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`).join('\n')
     ).join('\n\n');
 
-    const shareText = `Bill Split Breakdown:\n\n${breakdown}\n\nTotal: $${receiptData.total.toFixed(2)}`;
+    const shareText = `Bill Split Breakdown:\n\n${breakdown}\n\nTotal: Rp ${receiptData.total.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
     if (navigator.share) {
       navigator.share({
@@ -123,7 +123,7 @@ const FinalBreakdown = () => {
           </CardHeader>
           <CardContent>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">${receiptData.total.toFixed(2)}</div>
+              <div className="text-3xl font-bold text-primary">Rp {receiptData.total.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
               <div className="text-sm text-muted-foreground">Total Bill</div>
             </div>
           </CardContent>
@@ -139,7 +139,7 @@ const FinalBreakdown = () => {
                 </div>
                 {breakdown.user.name}
                 <span className="ml-auto text-xl font-bold text-primary">
-                  ${breakdown.total.toFixed(2)}
+                  Rp {breakdown.total.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </span>
               </CardTitle>
             </CardHeader>
@@ -152,7 +152,7 @@ const FinalBreakdown = () => {
                     {breakdown.items.map((item, index) => (
                       <div key={index} className="flex justify-between text-sm">
                         <span>{item.name}</span>
-                        <span>${item.price.toFixed(2)}</span>
+                        <span>Rp {item.price.toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       </div>
                     ))}
                   </div>
